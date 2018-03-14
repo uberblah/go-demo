@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	registry = map[string]name_parser.NameParser{
+	Registry = map[string]name_parser.NameParser{
 		"person": &name_parser.Person{},
 		"email":  &name_parser.Email{},
 	}
@@ -13,7 +13,7 @@ var (
 
 func MatchName(name string) (nameType string, parts map[string]string) {
 	var parser name_parser.NameParser
-	for nameType, parser = range registry {
+	for nameType, parser = range Registry {
 		if parser.ParseFrom(name) == nil {
 			parts = parser.GetParts()
 			return
